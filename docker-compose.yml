@@ -3,15 +3,24 @@ version: "3"
 services:
   db:
     image: postgres
+  nginx:
+    depends_on:
+      - api
+    restart: always
+    build:
+      dockerfile: dev.Dockerfile
+      context: ./nginx
+    ports:
+      - "3050:80"
+    volumes:
+      - ./backend/staticfiles/:/staticfiles/
   api:
     build:
       dockerfile: dev.Dockerfile
       context: ./backend
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./backend:/backend
-    ports:
-      - "8000:8000"
+      - ./backend:/app
     depends_on:
       - db
   client:
@@ -22,5 +31,3 @@ services:
     volumes:
       - /app/node_modules
       - ./frontend:/app
-    ports:
-      - "8080:8080"

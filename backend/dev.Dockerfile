@@ -2,12 +2,10 @@ FROM python:3
 
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir /backend
+WORKDIR /app
 
-WORKDIR /backend
-
-COPY requirements.txt /backend
+COPY requirements.txt /app
 
 RUN pip install -r requirements.txt
 
-COPY . /backend
+COPY . /app

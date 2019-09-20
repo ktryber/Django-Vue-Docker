@@ -2,17 +2,13 @@ sudo: required
 services:
   - docker
 
-env:
-  - DJANGO_VERSION=2.0
-  - DJANGO_SETTINGS_MODULE='backend.config.settings.local'
-
 before_install:
   - docker build -t ktryber/vue-test -f ./frontend/dev.Dockerfile ./frontend
   - docker build -t ktryber/django-test -f ./backend/dev.Dockerfile ./backend
 
 script:
   - docker run ktryber/vue-test npm run test
-  - docker run ktryber/django-test python manage.py test
+  - docker run ktryber/django-test -e DJANGO_SETTINGS_MODULE=backend.config.settings.local python manage.py test
 
 after_success:
   - docker build -t ktryber/django-vue-docker-frontend ./frontend

@@ -2,6 +2,9 @@ sudo: required
 services:
   - docker
 
+env:
+  - PG_NAME="PG_NAME"
+
 before_install:
   - docker build -t ktryber/vue-test -f ./frontend/dev.Dockerfile ./frontend
   - docker build -t ktryber/django-test -f ./backend/dev.Dockerfile ./backend

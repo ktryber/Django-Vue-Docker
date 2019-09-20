@@ -7,6 +7,7 @@ before_install:
   - docker build -t ktryber/django-test -f ./backend/dev.Dockerfile ./backend
 
 script:
+  - echo $PG_NAME
   - docker run ktryber/vue-test npm run test
   - docker run ktryber/django-test python manage.py test
 

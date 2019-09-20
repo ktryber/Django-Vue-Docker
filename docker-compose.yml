@@ -15,7 +15,7 @@ services:
     ports:
       - "3050:80"
     volumes:
-      - ./backend/staticfiles/:/staticfiles/
+      - ./backend/config/staticfiles/:/staticfiles/
   api:
     build:
       dockerfile: dev.Dockerfile
@@ -25,7 +25,7 @@ services:
       - ./backend:/app
     depends_on:
       - db
-    env_file: ./secrets/.env
+    env_file: ./backend/secrets/.env
   client:
     build:
       dockerfile: dev.Dockerfile

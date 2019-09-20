@@ -6,6 +6,7 @@ services:
   nginx:
     depends_on:
       - api
+      - client
     restart: always
     build:
       dockerfile: dev.Dockerfile
@@ -27,6 +28,7 @@ services:
     build:
       dockerfile: dev.Dockerfile
       context: ./frontend
+    command: npm run serve
     volumes:
       - /app/node_modules
       - ./frontend:/app

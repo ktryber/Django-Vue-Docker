@@ -18,7 +18,7 @@ services:
     build:
       dockerfile: dev.Dockerfile
       context: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: /entrypoint.sh
     volumes:
       - ./backend:/app
     depends_on:
@@ -27,7 +27,6 @@ services:
     build:
       dockerfile: dev.Dockerfile
       context: ./frontend
-    command: npm run serve
     volumes:
       - /app/node_modules
       - ./frontend:/app

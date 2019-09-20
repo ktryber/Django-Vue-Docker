@@ -1,6 +1,6 @@
 # backend
 ./backend/config/staticfiles
-/backend/staticfiles
+./backend/staticfiles
 
 secrets
 ./frontend/node_modules

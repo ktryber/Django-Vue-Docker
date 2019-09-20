@@ -2,6 +2,7 @@ version: "3"
 
 services:
   db:
+    restart: always
     image: postgres
   nginx:
     depends_on:
@@ -24,6 +25,7 @@ services:
       - ./backend:/app
     depends_on:
       - db
+    env_file: ./secrets/.env
   client:
     build:
       dockerfile: dev.Dockerfile

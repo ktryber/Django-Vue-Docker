@@ -1,6 +1,4 @@
 from .base import *
-# from .base import env
-
 import os
 
 ALLOWED_HOSTS = ["*"]

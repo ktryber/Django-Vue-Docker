@@ -11,19 +11,19 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-# import environ
+import environ
 
 
-# env = environ.Env()
+env = environ.Env()
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
-# if READ_DOT_ENV_FILE:
-#     # OS environment variables take precedence over variables from .env
-#     env.read_env(BASE_DIR + "secrets/.env")
+if os.environ.get('READ_DOT_ENV_FILE', False):
+    # OS environment variables take precedence over variables from .env
+    env.read_env(BASE_DIR + "secrets/.env")
 
 
 # Quick-start development settings - unsuitable for production

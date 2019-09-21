@@ -26,6 +26,12 @@ services:
     depends_on:
       - db
     env_file: ./backend/secrets/.env
+    environment:
+      - PG_USER=postgres
+      - PG_PASSWORD=postgres_password
+      - PG_HOST=db
+      - PG_NAME=postgres
+      - PG_PORT=5432
   client:
     build:
       dockerfile: dev.Dockerfile

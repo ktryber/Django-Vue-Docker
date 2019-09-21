@@ -1,0 +1,29 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "ktryber/django-vue-docker-frontend",
+      "hostname": "frontend",
+      "essential": false
+    },
+    {
+      "name": "backend",
+      "image": "ktryber/django-vue-docker-backend",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "ktryber/django-vue-docker-nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "backend"]
+    }
+  ]
+}

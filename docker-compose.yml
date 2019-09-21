@@ -6,6 +6,7 @@ services:
   nginx:
     depends_on:
       - client
+      - api
     restart: always
     build:
       dockerfile: dev.Dockerfile

@@ -6,9 +6,6 @@ before_install:
   - docker build -t ktryber/django-test -f ./backend/dev.Dockerfile ./backend
   - docker build -t ktryber/vue-test -f ./frontend/dev.Dockerfile ./frontend
 
-before_script:
-  - cp .env.example .env
-
 script:
   - docker run ktryber/django-test python manage.py test
   - docker run ktryber/vue-test npm run test

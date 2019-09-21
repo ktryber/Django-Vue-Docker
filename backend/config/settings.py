@@ -28,11 +28,11 @@ SECRET_KEY = config('SECRET_KEY', default='super-secret')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('RDS_DB_NAME'),
-        'USER': config('RDS_USERNAME'),
-        'PASSWORD': config('RDS_PASSWORD'),
-        'HOST': config('RDS_HOSTNAME'),
-        'PORT': config('RDS_PORT'),
+        'NAME': config('RDS_DB_NAME', default='postgres'),
+        'USER': config('RDS_USERNAME', default='postgres'),
+        'PASSWORD': config('RDS_PASSWORD', default='postgrespassword'),
+        'HOST': config('RDS_HOSTNAME', default='db'),
+        'PORT': config('RDS_PORT', default=5432),
     }
 }
 

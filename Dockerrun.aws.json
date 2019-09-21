@@ -1,5 +1,13 @@
 {
   "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "staticfiles",
+      "host": {
+        "sourcePath": "/staticfiles/"
+      }
+    }
+  ],
   "containerDefinitions": [
     {
       "name": "frontend",
@@ -13,7 +21,13 @@
       "image": "ktryber/django-vue-docker-backend",
       "hostname": "api",
       "essential": false,
-      "memory": 128
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "staticfiles",
+          "containerPath": "/staticfiles/"
+        }
+      ]
     },
     {
       "name": "nginx",

@@ -1,18 +1,20 @@
 from .base import *
-from .base import env
+# from .base import env
+
+import os
 
 ALLOWED_HOSTS = ["*"]
 
-SECRET_KEY = env('SECRET_KEY', default='super-secret')
+SECRET_KEY = os.environ.get('SECRET_KEY', default='super-secret')
 
-DEBUG = env.bool('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', False)
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('PG_NAME'),
-        'USER': env('PG_USER'),
-        'HOST': env('PG_HOST'),
-        'PORT': env('PG_PORT'),
+        'NAME': os.environ.get('PG_NAME'),
+        'USER': os.environ.get('PG_USER'),
+        'HOST': os.environ.get('PG_HOST'),
+        'PORT': os.environ.get('PG_PORT'),
     }
 }

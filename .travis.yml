@@ -8,7 +8,7 @@ before_install:
 
 script:
   - docker run ktryber/vue-test npm run test
-  - docker run ktryber/django-test -e DJANGO_SETTINGS_MODULE=backend.config.settings.local python manage.py test
+  - docker run ktryber/django-test python manage.py test
 
 after_success:
   - docker build -t ktryber/django-vue-docker-frontend ./frontend

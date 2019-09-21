@@ -1,6 +1,7 @@
 # backend
 backend/config/staticfiles/
 ./backend/staticfiles
+backend/config/settings/__pycache__
 
 secrets
 ./frontend/node_modules

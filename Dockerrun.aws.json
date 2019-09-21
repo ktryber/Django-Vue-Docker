@@ -4,7 +4,7 @@
     {
       "name": "staticfiles",
       "host": {
-        "sourcePath": "/staticfiles/"
+        "sourcePath": "/backend/config/staticfiles/"
       }
     }
   ],

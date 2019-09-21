@@ -24,6 +24,8 @@ services:
     depends_on:
       - db
     env_file: ./backend/secrets/.env
+    environment:
+      - RDS_DB_NAME=postgres
   client:
     build:
       dockerfile: dev.Dockerfile

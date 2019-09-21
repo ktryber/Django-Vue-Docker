@@ -20,3 +20,16 @@ after_success:
   - docker push ktryber/django-vue-docker-frontend
   - docker push ktryber/django-vue-docker-backend
   - docker push ktryber/django-vue-docker-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: django-vue-docker
+  env: DjangoVueDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-566654164382
+  bucket_path: django-docker-vue
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY

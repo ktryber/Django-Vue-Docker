@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if os.environ.get('READ_DOT_ENV_FILE', False):
     # OS environment variables take precedence over variables from .env
-    env.read_env(BASE_DIR + "secrets/.env")
+    env.read_env(BASE_DIR + "backend/secrets/.env")
 
 
 # Quick-start development settings - unsuitable for production

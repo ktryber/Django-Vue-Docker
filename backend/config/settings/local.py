@@ -3,17 +3,15 @@ import os
 
 ALLOWED_HOSTS = ["*"]
 
-SECRET_KEY = os.environ.get('SECRET_KEY', default='super-secret')
-
-DEBUG = os.environ.get('DEBUG', False)
+SECRET_KEY = config('SECRET_KEY', default='super-secret')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('PG_NAME', 'postgres'),
-        'USER': os.environ.get('PG_USER', 'postgres'),
-        'PASSWORD': os.environ.get('PG_PASSWORD', 'postgrespassword'),
-        'HOST': os.environ.get('PG_HOST', 'db'),
-        'PORT': os.environ.get('PG_PORT', '5432'),
+        'NAME': config('PG_NAME', default='postgres'),
+        'USER': config('PG_USER', default='postgres'),
+        'PASSWORD': config('PG_PASSWORD', default='postgrespassword'),
+        'HOST': config('PG_HOST', default='db'),
+        'PORT': config('PG_PORT', default=5432),
     }
 }

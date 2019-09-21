@@ -13,18 +13,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import environ
 
-env = environ.Env()
+from decouple import config
 
-
-ROOT_DIR = environ.Path(__file__) - 2
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
-if os.environ.get('READ_DOT_ENV_FILE', False):
-    # OS environment variables take precedence over variables from .env
-    env.read_env(BASE_DIR + "backend/secrets/.env")
+DEBUG = config('DEBUG', cast=bool, default=False)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -32,8 +27,6 @@ if os.environ.get('READ_DOT_ENV_FILE', False):
 
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATIC_ROOT = str(ROOT_DIR('staticfiles'))
-print(STATIC_ROOT)
 
 
 STATICFILES_DIRS = [

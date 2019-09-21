@@ -30,4 +30,5 @@ frontend/yarn-error.log*
 # Byte-compiled / optimized / DLL files
 backend/config/settings/__pycache__/
 backend/config/__pycache__
+backend/__pycache__
 *.py[cod]

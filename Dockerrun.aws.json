@@ -1,13 +1,5 @@
 {
   "AWSEBDockerrunVersion": 2,
-  "volumes": [
-    {
-      "name": "staticfiles",
-      "host": {
-        "sourcePath": "/staticfiles/"
-      }
-    }
-  ],
   "containerDefinitions": [
     {
       "name": "frontend",
@@ -35,13 +27,7 @@
         }
       ],
       "links": ["frontend", "backend"],
-      "memory": 128,
-      "mountPoints": [
-        {
-          "sourceVolume": "staticfiles",
-          "containerPath": "/staticfiles/"
-        }
-      ]
+      "memory": 128
     }
   ]
 }

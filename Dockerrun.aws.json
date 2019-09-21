@@ -18,15 +18,16 @@
     {
       "name": "nginx",
       "image": "ktryber/django-vue-docker-nginx",
+      "hostname": "nginx",
       "essential": true,
-      "memory": 128,
       "portMappings": [
         {
           "hostPort": 80,
           "containerPort": 80
         }
       ],
-      "links": ["frontend", "backend"]
+      "links": ["frontend", "backend"],
+      "memory": 128
     }
   ]
 }

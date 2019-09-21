@@ -12,3 +12,5 @@ COPY . /app
 
 # entrypoint, must be executable file chmod +x entrypoint.sh
 COPY ./scripts/entrypoint.sh /
+
+CMD ["/entrypoint.sh"]

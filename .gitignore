@@ -28,5 +28,6 @@ frontend/yarn-error.log*
 *.sln
 *.sw?
 # Byte-compiled / optimized / DLL files
-__pycache__/
+backend/config/settings/__pycache__/
+backend/config/__pycache__
 *.py[cod]

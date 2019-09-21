@@ -27,7 +27,7 @@ deploy:
   app: django-vue-docker
   env: DjangoVueDocker-env
   bucket_name: elasticbeanstalk-us-east-2-566654164382
-  bucket_path: django-docker-vue
+  bucket_path: django-vue-docker
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY

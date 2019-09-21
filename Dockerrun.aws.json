@@ -21,13 +21,7 @@
       "image": "ktryber/django-vue-docker-backend",
       "hostname": "api",
       "essential": false,
-      "memory": 128,
-      "mountPoints": [
-        {
-          "sourceVolume": "staticfiles",
-          "containerPath": "/staticfiles/"
-        }
-      ]
+      "memory": 128
     },
     {
       "name": "nginx",
@@ -41,7 +35,13 @@
         }
       ],
       "links": ["frontend", "backend"],
-      "memory": 128
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "staticfiles",
+          "containerPath": "/staticfiles/"
+        }
+      ]
     }
   ]
 }

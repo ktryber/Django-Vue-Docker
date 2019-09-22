@@ -21,7 +21,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = config('DEBUG', cast=bool, default=False)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "*",
+                 "djangovuedocker-env.6xiswrtket.us-east-2.elasticbeanstalk.com"]
 
 SECRET_KEY = config('SECRET_KEY', default='super-secret')
 
@@ -39,12 +40,11 @@ DATABASES = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/

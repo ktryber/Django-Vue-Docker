@@ -1,6 +1,6 @@
 # backend
 backend/config/__pycache__/
-backend/config/staticfiles/
+backend/config/staticfiles
 
 secrets
 frontend/node_modules
@@ -31,3 +31,8 @@ backend/config/settings/__pycache__/
 backend/config/__pycache__
 backend/__pycache__
 *.py[cod]
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

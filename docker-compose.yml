@@ -12,7 +12,9 @@ services:
       dockerfile: dev.Dockerfile
       context: ./nginx
     volumes:
-      - ./backend/config/staticfiles/:/staticfiles/
+      - ./backend/media/:/media/
+      - ./backend/staticfiles/:/staticfiles/
+      - ./nginx/default.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "3050:80"
   api:

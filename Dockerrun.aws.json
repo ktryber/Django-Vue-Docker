@@ -2,7 +2,7 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "api",
+      "name": "backend",
       "image": "ktryber/django-vue-docker-backend",
       "hostname": "api",
       "essential": false,
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "name": "client",
+      "name": "frontend",
       "image": "ktryber/django-vue-docker-frontend",
       "hostname": "client",
       "essential": false,
@@ -57,7 +57,7 @@
           "hostPort": 3050
         }
       ],
-      "links": ["client", "api"]
+      "links": ["frontend", "backend"]
     }
   ],
   "family": "",

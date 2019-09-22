@@ -76,7 +76,7 @@
     },
     {
       "host": {
-        "sourcePath": "./nginx/dev.conf"
+        "sourcePath": "./nginx/prod.conf"
       },
       "name": "_NginxDev_Conf"
     },

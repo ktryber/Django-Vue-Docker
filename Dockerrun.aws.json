@@ -1,5 +1,19 @@
 {
   "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "staticfiles",
+      "host": {
+        "sourcePath": "/var/app/current/backend/config/staticfiles"
+      }
+    },
+    {
+      "name": "nginx-proxy-conf",
+      "host": {
+        "sourcePath": "/var/app/current/nginx/default.conf"
+      }
+    }
+  ],
   "containerDefinitions": [
     {
       "name": "frontend",
@@ -13,7 +27,13 @@
       "image": "ktryber/django-vue-docker-backend",
       "hostname": "api",
       "essential": false,
-      "memory": 128
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "staticfiles",
+          "containerPath": "/var/app/current/backend/config/staticfiles"
+        }
+      ]
     },
     {
       "name": "nginx",
@@ -24,6 +44,17 @@
         {
           "hostPort": 80,
           "containerPort": 80
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "nginx-proxy-conf",
+          "containerPath": "/etc/nginx/conf.d"
+        },
+        {
+          "sourceVolume": "staticfiles",
+          "containerPath": "/var/app/current/backend/config/staticfiles",
+          "readOnly": true
         }
       ],
       "links": ["frontend", "backend"],

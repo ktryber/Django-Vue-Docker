@@ -23,4 +23,4 @@ WORKDIR /app
 
 CMD ["/gunicorn.sh"]
 
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/start.sh" ]

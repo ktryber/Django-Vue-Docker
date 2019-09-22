@@ -19,17 +19,7 @@
       "image": "ktryber/django-vue-docker-frontend",
       "hostname": "client",
       "essential": false,
-      "memory": 128,
-      "mountPoints": [
-        {
-          "containerPath": "/app/node_modules",
-          "sourceVolume": "AppNode_Modules"
-        },
-        {
-          "containerPath": "/app",
-          "sourceVolume": "_Frontend"
-        }
-      ]
+      "memory": 128
     },
     {
       "name": "nginx",
@@ -45,10 +35,6 @@
         {
           "containerPath": "/staticfiles/",
           "sourceVolume": "_BackendStaticfiles"
-        },
-        {
-          "containerPath": "/etc/nginx/nginx.conf",
-          "sourceVolume": "_NginxDev_Conf"
         }
       ],
       "portMappings": [
@@ -60,7 +46,6 @@
       "links": ["frontend", "backend"]
     }
   ],
-  "family": "",
   "volumes": [
     {
       "host": {
@@ -76,27 +61,9 @@
     },
     {
       "host": {
-        "sourcePath": "./nginx/prod.conf"
-      },
-      "name": "_NginxDev_Conf"
-    },
-    {
-      "host": {
         "sourcePath": "./backend"
       },
       "name": "_Backend"
-    },
-    {
-      "host": {
-        "sourcePath": "/app/node_modules"
-      },
-      "name": "AppNode_Modules"
-    },
-    {
-      "host": {
-        "sourcePath": "./frontend"
-      },
-      "name": "_Frontend"
     }
   ]
 }

@@ -1,18 +1,26 @@
 FROM python:3
 
-ENV PYTHONUNBUFFERED 1
+# python envs
+ENV PYTHONFAULTHANDLER=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONHASHSEED=random \
+    PIP_NO_CACHE_DIR=off \
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    PIP_DEFAULT_TIMEOUT=10
 
-WORKDIR /app
+COPY ./requirements.txt /
 
-COPY requirements.txt /
-
-RUN pip install -r /requirements.txt
+RUN pip install -r ./requirements.txt
 
 COPY . /app
 # collect static files
 RUN python manage.py collectstatic --noinput
 
 # entrypoint, must be executable file chmod +x entrypoint.sh
-COPY ./scripts/entrypoint.sh /
+COPY ./scripts/entrypoint.sh ./scripts/start.sh ./scripts/gunicorn.sh /
 
-CMD ["/entrypoint.sh"]
+WORKDIR /app
+
+CMD ["/gunicorn.sh"]
+
+ENTRYPOINT [ "/entrypoint.sh" ]

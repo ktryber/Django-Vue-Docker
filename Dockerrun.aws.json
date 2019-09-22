@@ -2,32 +2,101 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "frontend",
-      "image": "ktryber/django-vue-docker-frontend",
-      "hostname": "client",
-      "essential": false,
-      "memory": 128
-    },
-    {
-      "name": "backend",
+      "name": "api",
       "image": "ktryber/django-vue-docker-backend",
       "hostname": "api",
       "essential": false,
-      "memory": 128
+      "memory": 128,
+      "mountPoints": [
+        {
+          "containerPath": "/app",
+          "sourceVolume": "_Backend"
+        }
+      ]
+    },
+    {
+      "name": "client",
+      "image": "ktryber/django-vue-docker-frontend",
+      "hostname": "client",
+      "essential": false,
+      "memory": 128,
+      "mountPoints": [
+        {
+          "containerPath": "/app/node_modules",
+          "sourceVolume": "AppNode_Modules"
+        },
+        {
+          "containerPath": "/app",
+          "sourceVolume": "_Frontend"
+        }
+      ]
     },
     {
       "name": "nginx",
       "image": "ktryber/django-vue-docker-nginx",
       "hostname": "nginx",
+      "memory": 128,
       "essential": true,
-      "portMappings": [
+      "mountPoints": [
         {
-          "hostPort": 80,
-          "containerPort": 80
+          "containerPath": "/media/",
+          "sourceVolume": "_BackendMedia"
+        },
+        {
+          "containerPath": "/staticfiles/",
+          "sourceVolume": "_BackendStaticfiles"
+        },
+        {
+          "containerPath": "/etc/nginx/nginx.conf",
+          "sourceVolume": "_NginxDev_Conf"
         }
       ],
-      "links": ["frontend", "backend"],
-      "memory": 128
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 3050
+        }
+      ],
+      "links": ["client", "api"]
+    }
+  ],
+  "family": "",
+  "volumes": [
+    {
+      "host": {
+        "sourcePath": "./backend/media/"
+      },
+      "name": "_BackendMedia"
+    },
+    {
+      "host": {
+        "sourcePath": "./backend/staticfiles/"
+      },
+      "name": "_BackendStaticfiles"
+    },
+    {
+      "host": {
+        "sourcePath": "./nginx/dev.conf"
+      },
+      "name": "_NginxDev_Conf"
+    },
+    {
+      "host": {
+        "sourcePath": "./backend"
+      },
+      "name": "_Backend"
+    },
+    {
+      "host": {
+        "sourcePath": "/app/node_modules"
+      },
+      "name": "AppNode_Modules"
+    },
+    {
+      "host": {
+        "sourcePath": "./frontend"
+      },
+      "name": "_Frontend"
     }
   ]
 }

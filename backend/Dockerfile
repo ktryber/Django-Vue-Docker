@@ -21,8 +21,4 @@ RUN python manage.py collectstatic --noinput
 # entrypoint, must be executable file chmod +x entrypoint.sh
 COPY ./scripts/entrypoint.sh ./scripts/start.sh ./scripts/gunicorn.sh /
 
-
-
-CMD ["/gunicorn.sh"]
-
-ENTRYPOINT [ "/start.sh" ]
+CMD ["/gunicorn.sh", "/start.sh"]

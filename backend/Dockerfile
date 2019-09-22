@@ -14,12 +14,14 @@ RUN pip install -r ./requirements.txt
 
 COPY . /app
 # collect static files
+WORKDIR /app
+
 RUN python manage.py collectstatic --noinput
 
 # entrypoint, must be executable file chmod +x entrypoint.sh
 COPY ./scripts/entrypoint.sh ./scripts/start.sh ./scripts/gunicorn.sh /
 
-WORKDIR /app
+
 
 CMD ["/gunicorn.sh"]
 

@@ -6,6 +6,12 @@
       "host": {
         "sourcePath": "/var/app/current/backend/config/staticfiles"
       }
+    },
+    {
+      "name": "nginx",
+      "host": {
+        "sourcePath": "/var/app/current/nginx/default.conf"
+      }
     }
   ],
   "containerDefinitions": [
@@ -45,6 +51,12 @@
           "sourceVolume": "staticfiles",
           "containerPath": "/var/app/current/backend/config/staticfiles",
           "readOnly": true
+        },
+        {
+          "name": "nginx",
+          "host": {
+            "sourcePath": "/var/app/current/nginx/default.conf"
+          }
         }
       ],
       "links": ["frontend", "backend"],

@@ -17,7 +17,7 @@ services:
     volumes:
       - ./backend:/app
       - ./backend/media/:/media/
-      - ./backend/staticfiles/:/staticfiles/
+      - ./backend/staticfiles/:/app/staticfiles/
     env_file: ./backend/secrets/.env
   client:
     build:

@@ -1,6 +1,33 @@
 {
   "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "_BackendMedia",
+      "host": {
+        "sourcePath": "/media/"
+      }
+    },
+    {
+      "name": "_BackendStaticfiles",
+      "host": {
+        "sourcePath": "/staticfiles/"
+      }
+    },
+    {
+      "name": "_Backend",
+      "host": {
+        "sourcePath": "./backend"
+      }
+    }
+  ],
   "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "ktryber/django-vue-docker-frontend",
+      "hostname": "client",
+      "essential": false,
+      "memory": 128
+    },
     {
       "name": "backend",
       "image": "ktryber/django-vue-docker-backend",
@@ -13,13 +40,6 @@
           "sourceVolume": "_Backend"
         }
       ]
-    },
-    {
-      "name": "frontend",
-      "image": "ktryber/django-vue-docker-frontend",
-      "hostname": "client",
-      "essential": false,
-      "memory": 128
     },
     {
       "name": "nginx",
@@ -40,30 +60,10 @@
       "portMappings": [
         {
           "containerPort": 80,
-          "hostPort": 3050
+          "hostPort": 80
         }
       ],
       "links": ["frontend", "backend"]
-    }
-  ],
-  "volumes": [
-    {
-      "host": {
-        "sourcePath": "./backend/media/"
-      },
-      "name": "_BackendMedia"
-    },
-    {
-      "host": {
-        "sourcePath": "./backend/staticfiles/"
-      },
-      "name": "_BackendStaticfiles"
-    },
-    {
-      "host": {
-        "sourcePath": "./backend"
-      },
-      "name": "_Backend"
     }
   ]
 }

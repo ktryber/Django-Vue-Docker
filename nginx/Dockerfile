@@ -1,3 +1,2 @@
-# production stage
 FROM nginx
-COPY ./prod.conf /etc/nginx/conf.d/
+COPY ./prod.conf /etc/nginx/nginx.conf

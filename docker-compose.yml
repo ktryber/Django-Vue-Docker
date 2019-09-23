@@ -16,6 +16,8 @@ services:
       context: ./backend
     volumes:
       - ./backend:/app
+      - ./backend/media/:/media/
+      - ./backend/staticfiles/:/staticfiles/
     env_file: ./backend/secrets/.env
   client:
     build:

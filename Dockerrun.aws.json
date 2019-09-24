@@ -6,26 +6,14 @@
       "image": "ktryber/django-vue-docker-frontend",
       "hostname": "client",
       "essential": false,
-      "memory": 128,
-      "mountPoints": [
-        {
-          "containerPath": "/app",
-          "sourceVolume": "_Frontend"
-        }
-      ]
+      "memory": 128
     },
     {
       "name": "backend",
       "image": "ktryber/django-vue-docker-backend",
       "hostname": "api",
       "essential": false,
-      "memory": 128,
-      "mountPoints": [
-        {
-          "containerPath": "/app",
-          "sourceVolume": "_Backend"
-        }
-      ]
+      "memory": 128
     },
     {
       "name": "nginx",
@@ -39,43 +27,8 @@
           "hostPort": 80
         }
       ],
-      "mountPoints": [
-        {
-          "containerPath": "/media/",
-          "sourceVolume": "_BackendMedia"
-        },
-        {
-          "containerPath": "/staticfiles/",
-          "sourceVolume": "_BackendStaticfiles"
-        }
-      ],
       "links": ["frontend", "backend"]
     }
   ],
-  "volumes": [
-    {
-      "host": {
-        "sourcePath": "./backend/media/"
-      },
-      "name": "_BackendMedia"
-    },
-    {
-      "host": {
-        "sourcePath": "./backend/staticfiles/"
-      },
-      "name": "_BackendStaticfiles"
-    },
-    {
-      "host": {
-        "sourcePath": "./backend"
-      },
-      "name": "_Backend"
-    },
-    {
-      "host": {
-        "sourcePath": "./frontend"
-      },
-      "name": "_Frontend"
-    }
-  ]
+  "volumes": []
 }

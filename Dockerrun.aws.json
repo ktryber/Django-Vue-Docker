@@ -73,12 +73,6 @@
     },
     {
       "host": {
-        "sourcePath": "/app/node_modules"
-      },
-      "name": "AppNode_Modules"
-    },
-    {
-      "host": {
         "sourcePath": "./frontend"
       },
       "name": "_Frontend"

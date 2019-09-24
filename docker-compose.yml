@@ -10,14 +10,15 @@ services:
       context: ./nginx
     ports:
       - "3050:80"
+    volumes:
+      - ./backend/media/:/media/
+      - ./backend/staticfiles/:/staticfiles/
   api:
     build:
       dockerfile: dev.Dockerfile
       context: ./backend
     volumes:
       - ./backend:/app
-      - ./backend/media/:/media/
-      - ./backend/staticfiles/:/app/staticfiles/
     env_file: ./backend/secrets/.env
   client:
     build:

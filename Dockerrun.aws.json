@@ -21,7 +21,7 @@
       "hostname": "nginx",
       "memory": 128,
       "essential": true,
-      "links": ["client", "api"],
+      "links": ["frontend", "backend"],
       "portMappings": [
         {
           "containerPort": 80,

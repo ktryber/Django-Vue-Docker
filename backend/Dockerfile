@@ -1,5 +1,7 @@
 FROM python:3
 
+EXPOSE 8000
+
 # python envs
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \

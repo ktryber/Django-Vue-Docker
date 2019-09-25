@@ -6,7 +6,7 @@ services:
   nginx:
     restart: always
     build:
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
       context: ./nginx
     ports:
       - "3050:80"
@@ -15,14 +15,14 @@ services:
       - ./backend/staticfiles/:/staticfiles/
   api:
     build:
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
       context: ./backend
     volumes:
       - ./backend:/app
     env_file: ./backend/secrets/.env
   client:
     build:
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
       context: ./frontend
     volumes:
       - /app/node_modules

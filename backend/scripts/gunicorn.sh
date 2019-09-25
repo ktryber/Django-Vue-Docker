@@ -6,4 +6,4 @@ set -o nounset
 
 python manage.py migrate
 python manage.py collectstatic --noinput --verbosity 0
-gunicorn config.wsgi -w 4 --worker-class gevent -b 0.0.0.0:8000 --chdir=/var/app/current/backend
+gunicorn config.wsgi -w 4 --worker-class gevent -b 0.0.0.0:8000 --timeout 120 --chdir=/app

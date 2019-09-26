@@ -1,57 +1,19 @@
 {
   "AWSEBDockerrunVersion": 2,
-  "volumes": [
-    {
-      "host": {
-        "sourcePath": "./backend/media/"
-      },
-      "name": "backend_media"
-    },
-    {
-      "host": {
-        "sourcePath": "./backend/staticfiles/"
-      },
-      "name": "backend_staticfiles"
-    },
-    {
-      "host": {
-        "sourcePath": "./backend"
-      },
-      "name": "backend"
-    },
-    {
-      "host": {
-        "sourcePath": "./frontend"
-      },
-      "name": "frontend"
-    }
-  ],
   "containerDefinitions": [
     {
       "name": "frontend",
       "image": "ktryber/django-vue-docker-frontend",
       "hostname": "client",
       "essential": false,
-      "memory": 128,
-      "mountPoints": [
-        {
-          "containerPath": "/app",
-          "sourceVolume": "frontend"
-        }
-      ]
+      "memory": 128
     },
     {
       "name": "backend",
       "image": "ktryber/django-vue-docker-backend",
       "hostname": "api",
       "essential": false,
-      "memory": 128,
-      "mountPoints": [
-        {
-          "containerPath": "/app",
-          "sourceVolume": "backend"
-        }
-      ]
+      "memory": 128
     },
     {
       "name": "nginx",
@@ -64,16 +26,6 @@
         {
           "containerPort": 80,
           "hostPort": 80
-        }
-      ],
-      "mountPoints": [
-        {
-          "containerPath": "/media/",
-          "sourceVolume": "backend_media"
-        },
-        {
-          "containerPath": "/staticfiles/",
-          "sourceVolume": "backend_staticfiles"
         }
       ]
     }

@@ -1,2 +1,2 @@
 FROM nginx
-COPY ./default.conf /etc/nginx/nginx.conf
+COPY ./prod.conf /etc/nginx/nginx.conf

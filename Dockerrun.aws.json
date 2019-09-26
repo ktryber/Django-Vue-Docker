@@ -6,6 +6,12 @@
       "host": {
         "sourcePath": "/var/app/current/backend"
       }
+    },
+    {
+      "name": "frontend",
+      "host": {
+        "sourcePath": "/var/app/current/frontend"
+      }
     }
   ],
   "containerDefinitions": [
@@ -21,7 +27,14 @@
       "image": "ktryber/django-vue-docker-backend",
       "hostname": "api",
       "essential": false,
-      "memory": 128
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "backend",
+          "containerPath": "/app",
+          "readOnly": true
+        }
+      ]
     },
     {
       "name": "nginx",

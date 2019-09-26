@@ -13,4 +13,4 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/gunicorn.sh"]

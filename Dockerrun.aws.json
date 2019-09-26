@@ -12,6 +12,12 @@
       "host": {
         "sourcePath": "/var/app/current/frontend"
       }
+    },
+    {
+      "name": "staticfiles",
+      "host": {
+        "sourcePath": "/var/app/current/backend/config/staticfiles"
+      }
     }
   ],
   "containerDefinitions": [
@@ -46,6 +52,12 @@
         {
           "containerPort": 80,
           "hostPort": 80
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "staticfiles",
+          "containerPath": "/staticfiles"
         }
       ]
     }

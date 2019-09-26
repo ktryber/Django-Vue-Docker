@@ -8,4 +8,4 @@ COPY . .
 COPY ./scripts/entrypoint.sh ./scripts/start.sh ./scripts/gunicorn.sh /
 
 
-CMD ["/scripts/gunicorn.sh"]
+CMD ["/gunicorn.sh"]

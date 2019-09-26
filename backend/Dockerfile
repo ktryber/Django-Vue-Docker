@@ -1,5 +1,7 @@
 FROM python:3
 
+EXPOSE 8000
+
 # python envs
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
@@ -11,6 +13,10 @@ ENV PYTHONFAULTHANDLER=1 \
 # python dependencies
 COPY ./requirements.txt /
 RUN pip install -r ./requirements.txt
+
+WORKDIR /app
+
+COPY . /app
 
 # upload scripts
 COPY ./scripts/entrypoint.sh ./scripts/start.sh ./scripts/gunicorn.sh /

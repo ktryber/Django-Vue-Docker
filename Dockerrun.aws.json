@@ -31,8 +31,7 @@
       "mountPoints": [
         {
           "sourceVolume": "backend",
-          "containerPath": "/app",
-          "readOnly": true
+          "containerPath": "/app"
         }
       ]
     },

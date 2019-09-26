@@ -26,7 +26,7 @@
       "name": "backend",
       "image": "ktryber/django-vue-docker-backend",
       "hostname": "api",
-      "essential": false,
+      "essential": true,
       "memory": 128,
       "mountPoints": [
         {

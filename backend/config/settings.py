@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEBUG = config('DEBUG', cast=bool, default=False)
 
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "*",
-                 "DjangoVueDocker-env-1.6xiswrtket.us-east-2.elasticbeanstalk.com"]
+                 "djangovuedocker-env-2.6xiswrtket.us-east-2.elasticbeanstalk.com"]
 
 SECRET_KEY = config('SECRET_KEY', default='super-secret')
 
@@ -40,7 +40,7 @@ DATABASES = {
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(ROOT_DIR('staticfiles'))
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/staticfiles/'

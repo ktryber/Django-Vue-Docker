@@ -12,4 +12,4 @@ WORKDIR /app
 
 EXPOSE 8000
 
-CMD ["/gunicorn.sh"]
+ENTRYPOINT ["/gunicorn.sh"]

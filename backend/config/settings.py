@@ -21,8 +21,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = config('DEBUG', cast=bool, default=False)
 
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "*",
-                 "djangovuedocker-env-2.6xiswrtket.us-east-2.elasticbeanstalk.com"]
+ALLOWED_HOSTS = ["*"]
 
 SECRET_KEY = config('SECRET_KEY', default='super-secret')
 

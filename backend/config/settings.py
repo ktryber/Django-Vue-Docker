@@ -19,22 +19,34 @@ ROOT_DIR = environ.Path(__file__) - 2
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = config('DEBUG', cast=bool, default=False)
 
 ALLOWED_HOSTS = ["*"]
 
-SECRET_KEY = config('SECRET_KEY', default='super-secret')
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('RDS_DB_NAME', default='postgres'),
-        'USER': config('RDS_USERNAME', default='postgres'),
-        'PASSWORD': config('RDS_PASSWORD', default='postgrespassword'),
-        'HOST': config('RDS_HOSTNAME', default='db'),
-        'PORT': config('RDS_PORT', default=5432),
+if 'RDS_DB_NAME' in os.environ:
+    SECRET_KEY = config('SECRET_KEY')
+    DEBUG = config('DEBUG')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('RDS_DB_NAME'),
+            'USER': config('RDS_USERNAME'),
+            'PASSWORD': config('RDS_PASSWORD'),
+            'HOST': config('RDS_HOSTNAME'),
+            'PORT': config('RDS_PORT'),
+        }
     }
-}
+else:
+    DEBUG = True
+    SECRET_KEY = 'super-secret-key'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgrespassword',
+            'HOST': 'db',
+            'PORT': '5432',
+        }
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------

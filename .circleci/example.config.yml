@@ -1,0 +1,89 @@
+version: 2
+jobs:
+  test:
+    working_directory: ~/PROJECT-DIR
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: django-test
+          command: "docker build -t ktryber/django-test -f ./backend/dev.Dockerfile ./backend"
+      - run:
+          name: vue-test
+          command: "docker build -t ktryber/vue-test -f ./frontend/dev.Dockerfile ./frontend"
+      - run:
+          name: django-test-script
+          command: "docker run ktryber/django-test python manage.py test"
+      - run:
+          name: vue-test-script
+          command: "docker run ktryber/vue-test npm run test"
+
+  build:
+    working_directory: ~/PROJECT-DIR
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: backend-build
+          command: "docker build -t ktryber/django-vue-docker-backend ./backend"
+      - run:
+          name: frontend-build
+          command: "docker build -t ktryber/django-vue-docker-frontend ./frontend"
+      - run:
+          name: nginx-build
+          command: "docker build -t ktryber/django-vue-docker-nginx ./nginx"
+      - run: |
+          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+      - run:
+          name: backend-push-to-docker
+          command: "docker push ktryber/django-vue-docker-backend"
+      - run:
+          name: frontend-push-to-docker
+          command: "docker push ktryber/django-vue-docker-frontend"
+      - run:
+          name: nginx-push-to-docker
+          command: "docker push ktryber/django-vue-docker-nginx"
+
+  deploy:
+    working_directory: ~/PROJECT-DIR
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install --upgrade setuptools
+            sudo pip install awsebcli --upgrade
+      - run:
+          name: Deploying
+          command: eb deploy $CIRCLE_BRANCH-AWS-PROJECT-ENV
+
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test
+      - deploy:
+          requires:
+            - test
+            - build
+          filters:
+            branches:
+              only:
+                - master
+                - stage
